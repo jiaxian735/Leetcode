@@ -1,77 +1,18 @@
 class Solution {
 public:
     int maxDistance(string s, int k) {
-        int x{}, y{}, ans{}, t = k;
-        for (char c : s) {
-            if (c == 'N') {
-                if (t)
-                    y++, t--;
-                else
-                    y--;
-            } else if (c == 'N' || c == 'S')
+        int x{}, y{}, ans{};
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == 'N')
                 y++;
-            if (c == 'W') {
-                if (t)
-                    x++, t--;
-                else
-                    x--;
-            } else if (c == 'W' || c == 'E')
+            else if (s[i] == 'S')
+                y--;
+            else if (s[i] == 'E')
                 x++;
-            ans = max(ans, abs(x) + abs(y));
-        }
-        x = 0, y = 0, t = k;
-        for (char c : s) {
-            if (c == 'N') {
-                if (t)
-                    y++, t--;
-                else
-                    y--;
-            } else if (c == 'N' || c == 'S')
-                y++;
-            if (c == 'E') {
-                if (t)
-                    x++, t--;
-                else
-                    x--;
-            } else if (c == 'W' || c == 'E')
-                x++;
-            ans = max(ans, abs(x) + abs(y));
-        }
-        x = 0, y = 0, t = k;
-        for (char c : s) {
-            if (c == 'S') {
-                if (t)
-                    y++, t--;
-                else
-                    y--;
-            } else if (c == 'N' || c == 'S')
-                y++;
-            if (c == 'W') {
-                if (t)
-                    x++, t--;
-                else
-                    x--;
-            } else if (c == 'W' || c == 'E')
-                x++;
-            ans = max(ans, abs(x) + abs(y));
-        }
-        x = 0, y = 0, t = k;
-        for (char c : s) {
-            if (c == 'S') {
-                if (t)
-                    y++, t--;
-                else
-                    y--;
-            } else if (c == 'N' || c == 'S')
-                y++;
-            if (c == 'E') {
-                if (t)
-                    x++, t--;
-                else
-                    x--;
-            } else if (c == 'W' || c == 'E')
-                x++;
-            ans = max(ans, abs(x) + abs(y));
+            else
+                x--;
+            int p = abs(x) + abs(y);
+            ans = max(ans, p + min(i + 1 - p, 2 * k));
         }
         return ans;
     }
