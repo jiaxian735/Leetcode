@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode id=66 lang=cpp
- *
- * [66] Plus One
- */
-
-// @lc code=start
 class Solution {
 public:
     bool noOneFront(int& num) {
@@ -21,5 +14,4 @@ public:
         return digits;
     }
 };
-// @lc code=end
 
